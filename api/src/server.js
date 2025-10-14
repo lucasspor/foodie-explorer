@@ -5,13 +5,12 @@ const migrationsRun = require("./database/sqlite/migrations")
 const AppError = require("./utils/AppErrors")
 
 const express = require("express");
+const routes = require("./routes")
 
 migrationsRun()
 
 const app = express();
 app.use(express.json())
-
-const port = 3333;
 
 app.use((error, req, res, next) => {
     if (error instanceof AppError) {
@@ -33,4 +32,5 @@ app.get("/", (req, res) => {
     res.send()
 })
 
+const port = process.env.PORT || 3333
 app.listen(port, () => console.log(`Server is running on Port ${port}`))
