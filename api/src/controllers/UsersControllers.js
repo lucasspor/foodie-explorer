@@ -16,9 +16,9 @@ class UsersController {
 
         const hashedPassword = await hash(password, 8)
 
-        await database.run("INSERT IN users(name, email, password, VALUES (?,?,?)", [name, email, hashedPassword])
+        await database.run("INSERT INTO users(name, email, password, VALUES (?,?,?)", [name, email, hashedPassword])
 
-        return res.status(201).json({ message: "This user will be create" })
+        return res.status(201).json({ message: "This user has been created" })
     }
 }
 
